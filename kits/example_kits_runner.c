@@ -61,6 +61,18 @@ extern void example_ds_sortarray_run(void);
 #if TIKU_EXAMPLE_KITS_DS_STACK
 extern void example_ds_stack_run(void);
 #endif
+#if TIKU_EXAMPLE_KITS_DS_BLOOM
+extern void example_ds_bloom_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_DS_CIRCLOG
+extern void example_ds_circlog_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_DS_DEQUE
+extern void example_ds_deque_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_DS_TRIE
+extern void example_ds_trie_run(void);
+#endif
 
 /* Machine Learning */
 #if TIKU_EXAMPLE_KITS_ML_DTREE
@@ -134,6 +146,14 @@ void example_kits_run(void)
     example_ds_sortarray_run();
 #elif TIKU_EXAMPLE_KITS_DS_STACK
     example_ds_stack_run();
+#elif TIKU_EXAMPLE_KITS_DS_BLOOM
+    example_ds_bloom_run();
+#elif TIKU_EXAMPLE_KITS_DS_CIRCLOG
+    example_ds_circlog_run();
+#elif TIKU_EXAMPLE_KITS_DS_DEQUE
+    example_ds_deque_run();
+#elif TIKU_EXAMPLE_KITS_DS_TRIE
+    example_ds_trie_run();
 #elif TIKU_EXAMPLE_KITS_ML_DTREE
     example_ml_dtree_run();
 #elif TIKU_EXAMPLE_KITS_ML_KNN
