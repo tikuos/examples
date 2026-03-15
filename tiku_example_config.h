@@ -78,7 +78,87 @@
      !!TIKU_EXAMPLE_CHANNEL + !!TIKU_EXAMPLE_I2C_TEMP +                     \
      !!TIKU_EXAMPLE_DS18B20_TEMP)
 
-#if TIKU_EXAMPLES_ENABLE && (_EXAMPLE_COUNT > 1)
+/*---------------------------------------------------------------------------*/
+/* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */
+/*---------------------------------------------------------------------------*/
+
+#if defined(HAS_TIKUKITS)
+
+/**
+ * @defgroup TIKU_KITS_EXAMPLES TikuKits Example Selection
+ * @brief Enable ONE kits example at a time (set to 1). All others must be 0.
+ *
+ * These examples demonstrate TikuKits library modules (data structures,
+ * maths, ML, sensors, signal features, text compression).
+ * Requires tikukits/ directory to be present.
+ * @{
+ */
+
+/* Maths */
+#define TIKU_EXAMPLE_KITS_MATRIX          0  /**< Matrix operations */
+#define TIKU_EXAMPLE_KITS_STATISTICS      0  /**< Statistics functions */
+#define TIKU_EXAMPLE_KITS_DISTANCE        0  /**< Distance metrics */
+
+/* Data Structures */
+#define TIKU_EXAMPLE_KITS_DS_ARRAY        0  /**< Array data structure */
+#define TIKU_EXAMPLE_KITS_DS_BITMAP       0  /**< Bitmap data structure */
+#define TIKU_EXAMPLE_KITS_DS_BTREE        0  /**< B-tree data structure */
+#define TIKU_EXAMPLE_KITS_DS_HTABLE       0  /**< Hash table */
+#define TIKU_EXAMPLE_KITS_DS_LIST         0  /**< Linked list */
+#define TIKU_EXAMPLE_KITS_DS_PQUEUE       0  /**< Priority queue */
+#define TIKU_EXAMPLE_KITS_DS_QUEUE        0  /**< Queue */
+#define TIKU_EXAMPLE_KITS_DS_RINGBUF      0  /**< Ring buffer */
+#define TIKU_EXAMPLE_KITS_DS_SM           0  /**< State machine */
+#define TIKU_EXAMPLE_KITS_DS_SORTARRAY    0  /**< Sorted array */
+#define TIKU_EXAMPLE_KITS_DS_STACK        0  /**< Stack */
+
+/* Machine Learning */
+#define TIKU_EXAMPLE_KITS_ML_DTREE        0  /**< Decision tree */
+#define TIKU_EXAMPLE_KITS_ML_KNN          0  /**< K-nearest neighbors */
+#define TIKU_EXAMPLE_KITS_ML_LINREG       0  /**< Linear regression */
+#define TIKU_EXAMPLE_KITS_ML_LINSVM       0  /**< Linear SVM */
+#define TIKU_EXAMPLE_KITS_ML_LOGREG       0  /**< Logistic regression */
+#define TIKU_EXAMPLE_KITS_ML_NBAYES       0  /**< Naive Bayes */
+#define TIKU_EXAMPLE_KITS_ML_TNN          0  /**< Tiny neural network */
+
+/* Sensors */
+#define TIKU_EXAMPLE_KITS_SENSORS         0  /**< Temperature sensors */
+
+/* Signal Features */
+#define TIKU_EXAMPLE_KITS_SIGFEATURES     0  /**< Signal feature extraction */
+
+/* Text Compression */
+#define TIKU_EXAMPLE_KITS_TEXTCOMPRESSION 0  /**< Text compression */
+
+#define _KITS_EXAMPLE_COUNT                                                  \
+    (!!TIKU_EXAMPLE_KITS_MATRIX + !!TIKU_EXAMPLE_KITS_STATISTICS +          \
+     !!TIKU_EXAMPLE_KITS_DISTANCE +                                         \
+     !!TIKU_EXAMPLE_KITS_DS_ARRAY + !!TIKU_EXAMPLE_KITS_DS_BITMAP +        \
+     !!TIKU_EXAMPLE_KITS_DS_BTREE + !!TIKU_EXAMPLE_KITS_DS_HTABLE +       \
+     !!TIKU_EXAMPLE_KITS_DS_LIST + !!TIKU_EXAMPLE_KITS_DS_PQUEUE +        \
+     !!TIKU_EXAMPLE_KITS_DS_QUEUE + !!TIKU_EXAMPLE_KITS_DS_RINGBUF +      \
+     !!TIKU_EXAMPLE_KITS_DS_SM + !!TIKU_EXAMPLE_KITS_DS_SORTARRAY +       \
+     !!TIKU_EXAMPLE_KITS_DS_STACK +                                         \
+     !!TIKU_EXAMPLE_KITS_ML_DTREE + !!TIKU_EXAMPLE_KITS_ML_KNN +          \
+     !!TIKU_EXAMPLE_KITS_ML_LINREG + !!TIKU_EXAMPLE_KITS_ML_LINSVM +     \
+     !!TIKU_EXAMPLE_KITS_ML_LOGREG + !!TIKU_EXAMPLE_KITS_ML_NBAYES +     \
+     !!TIKU_EXAMPLE_KITS_ML_TNN +                                          \
+     !!TIKU_EXAMPLE_KITS_SENSORS + !!TIKU_EXAMPLE_KITS_SIGFEATURES +      \
+     !!TIKU_EXAMPLE_KITS_TEXTCOMPRESSION)
+
+/** @} */ /* End of TIKU_KITS_EXAMPLES group */
+
+#else /* !HAS_TIKUKITS */
+
+#define _KITS_EXAMPLE_COUNT 0
+
+#endif /* HAS_TIKUKITS */
+
+/*---------------------------------------------------------------------------*/
+/* MUTUAL EXCLUSION: only one example (core OR kits) at a time               */
+/*---------------------------------------------------------------------------*/
+
+#if TIKU_EXAMPLES_ENABLE && ((_EXAMPLE_COUNT + _KITS_EXAMPLE_COUNT) > 1)
 #error "Only one example may be enabled at a time"
 #endif
 
