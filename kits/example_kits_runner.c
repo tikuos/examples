@@ -112,6 +112,17 @@ extern void example_sigfeatures_run(void);
 extern void example_textcompression_run(void);
 #endif
 
+/* Networking */
+#if TIKU_EXAMPLE_KITS_NET_IPV4
+extern void example_net_ipv4_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_NET_UDP
+extern void example_net_udp_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_NET_TFTP
+extern void example_net_tftp_run(void);
+#endif
+
 /*---------------------------------------------------------------------------*/
 /* Dispatcher                                                                */
 /*---------------------------------------------------------------------------*/
@@ -174,6 +185,12 @@ void example_kits_run(void)
     example_sigfeatures_run();
 #elif TIKU_EXAMPLE_KITS_TEXTCOMPRESSION
     example_textcompression_run();
+#elif TIKU_EXAMPLE_KITS_NET_IPV4
+    example_net_ipv4_run();
+#elif TIKU_EXAMPLE_KITS_NET_UDP
+    example_net_udp_run();
+#elif TIKU_EXAMPLE_KITS_NET_TFTP
+    example_net_tftp_run();
 #endif
 }
 

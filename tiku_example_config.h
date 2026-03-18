@@ -130,6 +130,11 @@
 /* Text Compression */
 #define TIKU_EXAMPLE_KITS_TEXTCOMPRESSION 0  /**< Text compression */
 
+/* Networking */
+#define TIKU_EXAMPLE_KITS_NET_IPV4        0  /**< IPv4 fundamentals */
+#define TIKU_EXAMPLE_KITS_NET_UDP         0  /**< UDP datagrams */
+#define TIKU_EXAMPLE_KITS_NET_TFTP        0  /**< TFTP client */
+
 #define _KITS_EXAMPLE_COUNT                                                  \
     (!!TIKU_EXAMPLE_KITS_MATRIX + !!TIKU_EXAMPLE_KITS_STATISTICS +          \
      !!TIKU_EXAMPLE_KITS_DISTANCE +                                         \
@@ -144,7 +149,9 @@
      !!TIKU_EXAMPLE_KITS_ML_LOGREG + !!TIKU_EXAMPLE_KITS_ML_NBAYES +     \
      !!TIKU_EXAMPLE_KITS_ML_TNN +                                          \
      !!TIKU_EXAMPLE_KITS_SENSORS + !!TIKU_EXAMPLE_KITS_SIGFEATURES +      \
-     !!TIKU_EXAMPLE_KITS_TEXTCOMPRESSION)
+     !!TIKU_EXAMPLE_KITS_TEXTCOMPRESSION +                                \
+     !!TIKU_EXAMPLE_KITS_NET_IPV4 + !!TIKU_EXAMPLE_KITS_NET_UDP +       \
+     !!TIKU_EXAMPLE_KITS_NET_TFTP)
 
 /** @} */ /* End of TIKU_KITS_EXAMPLES group */
 
