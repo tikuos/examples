@@ -43,7 +43,7 @@
  */
 
 /** Master example enable - set to 1 to allow example selection */
-#define TIKU_EXAMPLES_ENABLE         0
+#define TIKU_EXAMPLES_ENABLE         1
 
 #define TIKU_EXAMPLE_BLINK           0  /**< 01: Single LED blink */
 #define TIKU_EXAMPLE_DUAL_BLINK      0  /**< 02: Two LEDs, two processes */
@@ -56,6 +56,7 @@
 #define TIKU_EXAMPLE_CHANNEL         0  /**< 09: Channel message passing */
 #define TIKU_EXAMPLE_I2C_TEMP        0  /**< 10: I2C temperature sensor */
 #define TIKU_EXAMPLE_DS18B20_TEMP    0  /**< 11: DS18B20 1-Wire temp sensor */
+#define TIKU_EXAMPLE_UDP_SEND        1  /**< 12: UDP sender over SLIP (needs tikukits) */
 
 /**
  * @defgroup TIKU_TEMP_SENSOR Temperature Sensor Selection (Example 10)
@@ -76,7 +77,7 @@
      !!TIKU_EXAMPLE_STATE_MACHINE + !!TIKU_EXAMPLE_CALLBACK_TIMER +         \
      !!TIKU_EXAMPLE_BROADCAST + !!TIKU_EXAMPLE_TIMEOUT +                    \
      !!TIKU_EXAMPLE_CHANNEL + !!TIKU_EXAMPLE_I2C_TEMP +                     \
-     !!TIKU_EXAMPLE_DS18B20_TEMP)
+     !!TIKU_EXAMPLE_DS18B20_TEMP + !!TIKU_EXAMPLE_UDP_SEND)
 
 /*---------------------------------------------------------------------------*/
 /* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */

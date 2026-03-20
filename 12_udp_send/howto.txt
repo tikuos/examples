@@ -1,0 +1,61 @@
+TikuOS Example 12: UDP Sender over SLIP
+========================================
+
+Sends UDP packets from MSP430 to a host PC over a SLIP serial link.
+
+Hardware
+--------
+- MSP430FR5969 LaunchPad connected via USB (eZ-FET backchannel UART)
+- UART: 9600 baud, 8N1
+
+Network
+-------
+- TikuOS IP:  172.16.7.2 (default, set in tikukits/net/tiku_kits_net.h)
+- Host IP:    172.16.7.1
+- Source port: 3000  ->  Destination port: 5000
+
+Firmware
+--------
+1. Enable the example in examples/tiku_example_config.h:
+
+       #define TIKU_EXAMPLES_ENABLE     1
+       #define TIKU_EXAMPLE_UDP_SEND    1
+
+   Make sure all other TIKU_EXAMPLE_* flags are 0.
+
+2. Build:
+
+       make MCU=msp430fr5969
+
+3. Flash:
+
+       make flash MCU=msp430fr5969
+
+Host (Python)
+-------------
+1. Install pyserial:
+
+       pip install pyserial
+
+2. Run the receiver (replace port with your serial device):
+
+       python3 udp_receiver.py /dev/ttyACM0
+
+   Windows:
+
+       python3 udp_receiver.py COM3
+
+   Optional: filter to a specific UDP port:
+
+       python3 udp_receiver.py /dev/ttyACM0 --listen-port 5000
+
+3. For raw SLIP frame debugging:
+
+       python3 slip_decoder.py /dev/ttyACM0
+
+Files
+-----
+udp_send.c        TikuOS protothread that sends "TikuOS #N" every 2 seconds
+slip_decoder.py   SLIP framing + IPv4/UDP parsers (reusable library)
+udp_receiver.py   Host-side UDP packet display (imports slip_decoder)
+howto.txt         This file
