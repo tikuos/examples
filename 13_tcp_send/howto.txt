@@ -1,0 +1,95 @@
+TikuOS Example 13: TCP Sender over SLIP
+========================================
+
+Sends TCP data from MSP430 to a host PC over a SLIP serial link.
+The device connects to the host, sends 5 messages, then closes.
+
+Hardware
+--------
+- MSP430FR5969 LaunchPad
+- External FTDI or CP2102 USB-UART adapter (NOT the eZ-FET backchannel)
+- Wiring:
+    Adapter TX  -> MSP430 P2.1 (RXD)
+    Adapter RX  -> MSP430 P2.0 (TXD)
+    Adapter GND -> MSP430 GND
+- UART: 9600 baud, 8N1
+
+Why not eZ-FET? The eZ-FET backchannel drops host-to-target data
+once the target starts sending a reply.  TCP needs multiple
+round-trips (SYN/SYN+ACK, DATA/ACK) which the eZ-FET cannot handle.
+An external adapter supports full-duplex UART with no limitations.
+
+Network
+-------
+- TikuOS IP:  172.16.7.2 (default, set in tikukits/net/tiku_kits_net.h)
+- Host IP:    172.16.7.1
+- Source port: 3000  ->  Destination port: 5000
+
+Firmware
+--------
+1. Enable the example in examples/tiku_example_config.h:
+
+       #define TIKU_EXAMPLES_ENABLE     1
+       #define TIKU_EXAMPLE_TCP_SEND    1
+
+   Make sure all other TIKU_EXAMPLE_* flags are 0.
+
+2. Build (TCP must be enabled):
+
+       make MCU=msp430fr5969 EXTRA_CFLAGS="-DTIKU_KITS_NET_TCP_ENABLE=1"
+
+3. Flash:
+
+       make flash MCU=msp430fr5969 EXTRA_CFLAGS="-DTIKU_KITS_NET_TCP_ENABLE=1"
+
+Host (Python)
+-------------
+1. Install pyserial:
+
+       pip install pyserial
+
+2. Run the TCP receiver (replace port with your FTDI/CP2102 device):
+
+       python3 tcp_receiver.py /dev/ttyUSB0
+
+   Windows:
+
+       python3 tcp_receiver.py COM3
+
+3. Expected output:
+
+       ==================================================
+         TikuOS TCP Receiver
+         Serial: /dev/ttyUSB0 @ 9600 baud
+         Listen: port 5000
+       ==================================================
+         Waiting for SYN from device... (Ctrl+C to quit)
+
+       [14:32:01]  SYN from port 3000 (seq=0x1fa00)
+              -> SYN+ACK sent (our_seq=0x8001)
+       [14:32:01]  ACK (handshake complete)
+       [14:32:04]  DATA #1: "TikuOS #0" (9 bytes)
+              -> ACK sent (ack=0x1fa0a)
+       [14:32:07]  DATA #2: "TikuOS #1" (9 bytes)
+              -> ACK sent (ack=0x1fa13)
+       [14:32:10]  DATA #3: "TikuOS #2" (9 bytes)
+              -> ACK sent (ack=0x1fa1c)
+       [14:32:13]  DATA #4: "TikuOS #3" (9 bytes)
+              -> ACK sent (ack=0x1fa25)
+       [14:32:16]  DATA #5: "TikuOS #4" (9 bytes)
+              -> ACK sent (ack=0x1fa2e)
+       [14:32:16]  FIN received
+              -> FIN+ACK sent (connection closed)
+
+         Session complete: 5 messages received.
+
+4. For raw SLIP frame debugging:
+
+       python3 slip_decoder.py /dev/ttyUSB0
+
+Files
+-----
+tcp_send.c        TikuOS protothread: connect, send 5 msgs, close
+tcp_receiver.py   Host-side TCP receiver over SLIP (accepts connections)
+slip_decoder.py   Symlink to ../12_udp_send/slip_decoder.py
+howto.txt         This file

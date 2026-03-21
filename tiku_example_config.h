@@ -56,7 +56,8 @@
 #define TIKU_EXAMPLE_CHANNEL         0  /**< 09: Channel message passing */
 #define TIKU_EXAMPLE_I2C_TEMP        0  /**< 10: I2C temperature sensor */
 #define TIKU_EXAMPLE_DS18B20_TEMP    0  /**< 11: DS18B20 1-Wire temp sensor */
-#define TIKU_EXAMPLE_UDP_SEND        1  /**< 12: UDP sender over SLIP (needs tikukits) */
+#define TIKU_EXAMPLE_UDP_SEND        0  /**< 12: UDP sender over SLIP (needs tikukits) */
+#define TIKU_EXAMPLE_TCP_SEND        1  /**< 13: TCP sender over SLIP (needs tikukits + TCP + ext UART) */
 
 /**
  * @defgroup TIKU_TEMP_SENSOR Temperature Sensor Selection (Example 10)
@@ -77,7 +78,8 @@
      !!TIKU_EXAMPLE_STATE_MACHINE + !!TIKU_EXAMPLE_CALLBACK_TIMER +         \
      !!TIKU_EXAMPLE_BROADCAST + !!TIKU_EXAMPLE_TIMEOUT +                    \
      !!TIKU_EXAMPLE_CHANNEL + !!TIKU_EXAMPLE_I2C_TEMP +                     \
-     !!TIKU_EXAMPLE_DS18B20_TEMP + !!TIKU_EXAMPLE_UDP_SEND)
+     !!TIKU_EXAMPLE_DS18B20_TEMP + !!TIKU_EXAMPLE_UDP_SEND + \
+     !!TIKU_EXAMPLE_TCP_SEND)
 
 /*---------------------------------------------------------------------------*/
 /* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */
@@ -135,6 +137,7 @@
 #define TIKU_EXAMPLE_KITS_NET_IPV4        0  /**< IPv4 fundamentals */
 #define TIKU_EXAMPLE_KITS_NET_UDP         0  /**< UDP datagrams */
 #define TIKU_EXAMPLE_KITS_NET_TFTP        0  /**< TFTP client */
+#define TIKU_EXAMPLE_KITS_NET_TCP         0  /**< TCP transport */
 
 #define _KITS_EXAMPLE_COUNT                                                  \
     (!!TIKU_EXAMPLE_KITS_MATRIX + !!TIKU_EXAMPLE_KITS_STATISTICS +          \
@@ -152,7 +155,7 @@
      !!TIKU_EXAMPLE_KITS_SENSORS + !!TIKU_EXAMPLE_KITS_SIGFEATURES +      \
      !!TIKU_EXAMPLE_KITS_TEXTCOMPRESSION +                                \
      !!TIKU_EXAMPLE_KITS_NET_IPV4 + !!TIKU_EXAMPLE_KITS_NET_UDP +       \
-     !!TIKU_EXAMPLE_KITS_NET_TFTP)
+     !!TIKU_EXAMPLE_KITS_NET_TFTP + !!TIKU_EXAMPLE_KITS_NET_TCP)
 
 /** @} */ /* End of TIKU_KITS_EXAMPLES group */
 

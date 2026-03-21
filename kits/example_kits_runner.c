@@ -122,6 +122,9 @@ extern void example_net_udp_run(void);
 #if TIKU_EXAMPLE_KITS_NET_TFTP
 extern void example_net_tftp_run(void);
 #endif
+#if TIKU_EXAMPLE_KITS_NET_TCP
+extern void example_net_tcp_run(void);
+#endif
 
 /*---------------------------------------------------------------------------*/
 /* Dispatcher                                                                */
@@ -191,6 +194,8 @@ void example_kits_run(void)
     example_net_udp_run();
 #elif TIKU_EXAMPLE_KITS_NET_TFTP
     example_net_tftp_run();
+#elif TIKU_EXAMPLE_KITS_NET_TCP
+    example_net_tcp_run();
 #endif
 }
 
