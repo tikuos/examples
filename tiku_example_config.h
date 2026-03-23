@@ -95,6 +95,9 @@
 #ifndef TIKU_EXAMPLE_HTTP_DIRECT
 #define TIKU_EXAMPLE_HTTP_DIRECT     0  /**< 18: Direct HTTP GET to internet (needs tikukits + TCP + SLIP bridge) */
 #endif
+#ifndef TIKU_EXAMPLE_HTTPS_DIRECT
+#define TIKU_EXAMPLE_HTTPS_DIRECT    0  /**< 19: HTTPS GET via PSK-TLS gateway (needs tikukits + HTTP + TLS + SLIP bridge) */
+#endif
 
 /**
  * @defgroup TIKU_TEMP_SENSOR Temperature Sensor Selection (Example 10)
@@ -118,7 +121,8 @@
      !!TIKU_EXAMPLE_DS18B20_TEMP + !!TIKU_EXAMPLE_UDP_SEND + \
      !!TIKU_EXAMPLE_TCP_SEND + !!TIKU_EXAMPLE_DNS_RESOLVE + \
      !!TIKU_EXAMPLE_HTTP_GET + !!TIKU_EXAMPLE_TCP_ECHO + \
-     !!TIKU_EXAMPLE_HTTP_FETCH + !!TIKU_EXAMPLE_HTTP_DIRECT)
+     !!TIKU_EXAMPLE_HTTP_FETCH + !!TIKU_EXAMPLE_HTTP_DIRECT + \
+     !!TIKU_EXAMPLE_HTTPS_DIRECT)
 
 /*---------------------------------------------------------------------------*/
 /* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */
