@@ -125,6 +125,15 @@ extern void example_net_tftp_run(void);
 #if TIKU_EXAMPLE_KITS_NET_TCP
 extern void example_net_tcp_run(void);
 #endif
+#if TIKU_EXAMPLE_KITS_NET_DNS
+extern void example_net_dns_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_NET_TLS
+extern void example_net_tls_run(void);
+#endif
+#if TIKU_EXAMPLE_KITS_NET_HTTP
+extern void example_net_http_run(void);
+#endif
 
 /*---------------------------------------------------------------------------*/
 /* Dispatcher                                                                */
@@ -132,6 +141,17 @@ extern void example_net_tcp_run(void);
 
 void example_kits_run(void)
 {
+    /* Delay before running the example to give the host time to open
+     * the serial port.  The eZ-FET backchannel only forwards UART
+     * data while a host has the port open.  Without this delay, the
+     * example output is sent before the host connects and is lost. */
+    /* Delay long enough for the host to finish build+flash and open
+     * the serial port.  Build+flash takes ~11 seconds on the eZ-FET,
+     * so 20 seconds gives comfortable margin.  The host tool opens
+     * the port immediately after flash completes. */
+    MAIN_PRINTF("Waiting 2s for serial connect...\n");
+    tiku_common_delay_ms(2000);
+
 #if TIKU_EXAMPLE_KITS_MATRIX
     example_matrix_run();
 #elif TIKU_EXAMPLE_KITS_STATISTICS
@@ -196,6 +216,12 @@ void example_kits_run(void)
     example_net_tftp_run();
 #elif TIKU_EXAMPLE_KITS_NET_TCP
     example_net_tcp_run();
+#elif TIKU_EXAMPLE_KITS_NET_DNS
+    example_net_dns_run();
+#elif TIKU_EXAMPLE_KITS_NET_TLS
+    example_net_tls_run();
+#elif TIKU_EXAMPLE_KITS_NET_HTTP
+    example_net_http_run();
 #endif
 }
 
