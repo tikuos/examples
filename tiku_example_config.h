@@ -43,7 +43,7 @@
  */
 
 /** Master example enable - set to 1 to allow example selection */
-#define TIKU_EXAMPLES_ENABLE         1
+#define TIKU_EXAMPLES_ENABLE         0
 
 #ifndef TIKU_EXAMPLE_BLINK
 #define TIKU_EXAMPLE_BLINK           0  /**< 01: Single LED blink */
