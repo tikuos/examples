@@ -42,8 +42,12 @@
  * @{
  */
 
-/** Master example enable - set to 1 to allow example selection */
+/** Master example enable - set to 1 to allow example selection.
+ *  May also be set from the Makefile (-DTIKU_EXAMPLES_ENABLE=1)
+ *  by example wrappers that auto-enable themselves. */
+#ifndef TIKU_EXAMPLES_ENABLE
 #define TIKU_EXAMPLES_ENABLE         0
+#endif
 
 #ifndef TIKU_EXAMPLE_BLINK
 #define TIKU_EXAMPLE_BLINK           0  /**< 01: Single LED blink */
@@ -98,6 +102,15 @@
 #ifndef TIKU_EXAMPLE_HTTPS_DIRECT
 #define TIKU_EXAMPLE_HTTPS_DIRECT    0  /**< 19: HTTPS GET via PSK-TLS gateway (needs tikukits + HTTP + TLS + SLIP bridge) */
 #endif
+#ifndef TIKU_EXAMPLE_BITBANG
+#define TIKU_EXAMPLE_BITBANG         0  /**< 20: htimer-driven GPIO bit-bang under tiku_crit (needs TIKU_BITBANG_ENABLE=1) */
+#endif
+#ifndef TIKU_EXAMPLE_CRIT_DEFER
+#define TIKU_EXAMPLE_CRIT_DEFER      0  /**< 21: bit-bang under tiku_crit_begin_defer (cooperative variant) */
+#endif
+#ifndef TIKU_EXAMPLE_CLOCK_FAULT
+#define TIKU_EXAMPLE_CLOCK_FAULT     0  /**< 22: tiku_clock_fault() boot-time diagnostic on LED1 */
+#endif
 
 /**
  * @defgroup TIKU_TEMP_SENSOR Temperature Sensor Selection (Example 10)
@@ -122,7 +135,8 @@
      !!TIKU_EXAMPLE_TCP_SEND + !!TIKU_EXAMPLE_DNS_RESOLVE + \
      !!TIKU_EXAMPLE_HTTP_GET + !!TIKU_EXAMPLE_TCP_ECHO + \
      !!TIKU_EXAMPLE_HTTP_FETCH + !!TIKU_EXAMPLE_HTTP_DIRECT + \
-     !!TIKU_EXAMPLE_HTTPS_DIRECT)
+     !!TIKU_EXAMPLE_HTTPS_DIRECT + !!TIKU_EXAMPLE_BITBANG + \
+     !!TIKU_EXAMPLE_CRIT_DEFER + !!TIKU_EXAMPLE_CLOCK_FAULT)
 
 /*---------------------------------------------------------------------------*/
 /* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */
