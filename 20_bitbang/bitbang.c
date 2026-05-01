@@ -50,6 +50,18 @@
 
 #if TIKU_EXAMPLE_BITBANG
 
+/*
+ * The bit-bang example needs the board to expose
+ * TIKU_BOARD_BSCAT_PORT / TIKU_BOARD_BSCAT_PIN (the GPIO the
+ * htimer ISR toggles). Boards that don't wire a backscatter pin
+ * (e.g. the FR6989 LaunchPad — the LCD glass owns most of P5/P6)
+ * skip the example so a generic build with TIKU_EXAMPLE_BITBANG=1
+ * still links.
+ */
+#if !defined(TIKU_BOARD_BSCAT_PORT) || !defined(TIKU_BOARD_BSCAT_PIN)
+#warning "TIKU_EXAMPLE_BITBANG requested but board has no BSCAT pin; skipping."
+#else
+
 #include <kernel/timers/tiku_bitbang.h>
 #include <kernel/timers/tiku_crit.h>
 
@@ -149,5 +161,7 @@ TIKU_PROCESS_THREAD(bitbang_process, ev, data)
 /* Autostart                                                                 */
 /*--------------------------------------------------------------------------*/
 TIKU_AUTOSTART_PROCESSES(&bitbang_process);
+
+#endif /* TIKU_BOARD_BSCAT_PORT */
 
 #endif /* TIKU_EXAMPLE_BITBANG */

@@ -111,6 +111,9 @@
 #ifndef TIKU_EXAMPLE_CLOCK_FAULT
 #define TIKU_EXAMPLE_CLOCK_FAULT     0  /**< 22: tiku_clock_fault() boot-time diagnostic on LED1 */
 #endif
+#ifndef TIKU_EXAMPLE_LCD_DEMO
+#define TIKU_EXAMPLE_LCD_DEMO        0  /**< 23: segment-LCD demo on FH-1138P (FR6989 LaunchPad) */
+#endif
 
 /**
  * @defgroup TIKU_TEMP_SENSOR Temperature Sensor Selection (Example 10)
@@ -136,7 +139,8 @@
      !!TIKU_EXAMPLE_HTTP_GET + !!TIKU_EXAMPLE_TCP_ECHO + \
      !!TIKU_EXAMPLE_HTTP_FETCH + !!TIKU_EXAMPLE_HTTP_DIRECT + \
      !!TIKU_EXAMPLE_HTTPS_DIRECT + !!TIKU_EXAMPLE_BITBANG + \
-     !!TIKU_EXAMPLE_CRIT_DEFER + !!TIKU_EXAMPLE_CLOCK_FAULT)
+     !!TIKU_EXAMPLE_CRIT_DEFER + !!TIKU_EXAMPLE_CLOCK_FAULT + \
+     !!TIKU_EXAMPLE_LCD_DEMO)
 
 /*---------------------------------------------------------------------------*/
 /* TIKUKITS EXAMPLES (only available when tikukits/ is present)              */
