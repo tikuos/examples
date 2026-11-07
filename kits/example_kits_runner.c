@@ -75,6 +75,9 @@ extern void example_ds_trie_run(void);
 #endif
 
 /* Machine Learning */
+#if TIKU_EXAMPLE_KITS_ML_DENSE
+extern void example_ml_dense_run(void);
+#endif
 #if TIKU_EXAMPLE_KITS_ML_DTREE
 extern void example_ml_dtree_run(void);
 #endif
@@ -188,6 +191,8 @@ void example_kits_run(void)
     example_ds_deque_run();
 #elif TIKU_EXAMPLE_KITS_DS_TRIE
     example_ds_trie_run();
+#elif TIKU_EXAMPLE_KITS_ML_DENSE
+    example_ml_dense_run();
 #elif TIKU_EXAMPLE_KITS_ML_DTREE
     example_ml_dtree_run();
 #elif TIKU_EXAMPLE_KITS_ML_KNN

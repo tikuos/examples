@@ -226,6 +226,9 @@
 #ifndef TIKU_EXAMPLE_KITS_ML_TNN
 #define TIKU_EXAMPLE_KITS_ML_TNN          0  /**< Tiny neural network */
 #endif
+#ifndef TIKU_EXAMPLE_KITS_ML_DENSE
+#define TIKU_EXAMPLE_KITS_ML_DENSE        0  /**< Quantized dense inference */
+#endif
 
 /* Sensors */
 #ifndef TIKU_EXAMPLE_KITS_SENSORS
@@ -275,7 +278,7 @@
      !!TIKU_EXAMPLE_KITS_ML_DTREE + !!TIKU_EXAMPLE_KITS_ML_KNN +          \
      !!TIKU_EXAMPLE_KITS_ML_LINREG + !!TIKU_EXAMPLE_KITS_ML_LINSVM +     \
      !!TIKU_EXAMPLE_KITS_ML_LOGREG + !!TIKU_EXAMPLE_KITS_ML_NBAYES +     \
-     !!TIKU_EXAMPLE_KITS_ML_TNN +                                          \
+     !!TIKU_EXAMPLE_KITS_ML_TNN + !!TIKU_EXAMPLE_KITS_ML_DENSE +             \
      !!TIKU_EXAMPLE_KITS_SENSORS + !!TIKU_EXAMPLE_KITS_SIGFEATURES +      \
      !!TIKU_EXAMPLE_KITS_TEXTCOMPRESSION +                                \
      !!TIKU_EXAMPLE_KITS_NET_IPV4 + !!TIKU_EXAMPLE_KITS_NET_UDP +       \
